@@ -3,6 +3,14 @@
 <head>
   <head>
   <style>
+    .brand img {
+  height: 40px;   /* ऊँचाई सेट कर दी */
+  width: auto;    /* proportion अपने आप adjust होगा */
+  object-fit: contain; /* image crop ना हो */
+  display: inline-block;
+  vertical-align: middle;
+}
+
     /* Navbar हमेशा ऊपर fix रहेगा */
     header {
       position: fixed !important;
@@ -1193,3 +1201,4 @@ document.querySelectorAll('.toggle-btn').forEach(button => {
   </script>
 </body>
 </html>
+
