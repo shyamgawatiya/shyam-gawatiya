@@ -2,15 +2,17 @@
 <html lang="hi">
 <head>
   <head>
-  <style>
-    .brand img {
-  height: 40px;   /* ऊँचाई सेट कर दी */
-  width: auto;    /* proportion अपने आप adjust होगा */
-  object-fit: contain; /* image crop ना हो */
-  display: inline-block;
-  vertical-align: middle;
-}
+    <style>
+  .brand img {
+    max-height: 50px !important;
+    width: auto !important;
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: middle;
+  }
+</style>
 
+  <style>
     /* Navbar हमेशा ऊपर fix रहेगा */
     header {
       position: fixed !important;
@@ -1201,4 +1203,5 @@ document.querySelectorAll('.toggle-btn').forEach(button => {
   </script>
 </body>
 </html>
+
 
