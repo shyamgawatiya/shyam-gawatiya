@@ -310,11 +310,10 @@
       setTimeout(typeWriter, 80);
     }
   }
-
-  
- 
 <body>
-    <!-- ===== Chatbot UI ===== -->
+<!-- ===== Chatbot UI ===== -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <div id="chatbot">
   <div id="chat-header">
     <span><i class="fas fa-robot"></i> Design AI</span>
@@ -327,11 +326,7 @@
   </div>
 </div>
 
-<!-- Floating Button -->
 <button id="chat-open"><i class="fas fa-comments"></i></button>
-
-<!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
   /* 🔹 Chatbot Base */
@@ -349,10 +344,10 @@
     flex-direction: column;
     font-family: 'Segoe UI', sans-serif;
     overflow: hidden;
-    z-index: 9999;
+    z-index: 99999; /* higher than everything */
   }
 
-  /* 🔹 Header */
+  /* Header */
   #chat-header {
     background: linear-gradient(45deg, #6a5acd, #00bcd4, #ff6ec4);
     background-size: 200% 200%;
@@ -364,182 +359,81 @@
     align-items: center;
     justify-content: space-between;
   }
+  #chat-header button { background:none; border:none; color:white; cursor:pointer; }
 
-  #chat-header button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-  }
+  /* Messages */
+  #chat-box { flex:1; padding:12px; overflow-y:auto; color:#fff; font-size:14px; display:flex; flex-direction:column; gap:6px;}
+  .message { padding:10px 14px; border-radius:12px; max-width:80%; animation:fadeIn 0.3s;}
+  .user-message { background: linear-gradient(45deg,#007bff,#00d4ff); color:#fff; margin-left:auto; box-shadow:0 2px 6px rgba(0,0,0,0.3);}
+  .bot-message { background: rgba(255,255,255,0.1); color:#eee; margin-right:auto; border:1px solid rgba(255,255,255,0.15); }
 
-  /* 🔹 Messages */
-  #chat-box {
-    flex: 1;
-    padding: 12px;
-    overflow-y: auto;
-    color: #fff;
-    font-size: 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
+  /* Input Area */
+  #chat-input-area { display:flex; border-top:1px solid rgba(255,255,255,0.2); background:rgba(20,20,30,0.7);}
+  #chat-input { flex:1; border:none; padding:12px; font-size:14px; outline:none; background:transparent; color:white;}
+  #send-btn { background:#6a5acd; color:white; border:none; padding:12px 15px; cursor:pointer; transition:0.3s;}
+  #send-btn:hover { background:#00bcd4; }
 
-  .message {
-    padding: 10px 14px;
-    border-radius: 12px;
-    max-width: 80%;
-    animation: fadeIn 0.3s ease-in-out;
-  }
+  /* Floating Button */
+  #chat-open { position:fixed; bottom:20px; right:20px; background: linear-gradient(45deg, #6a5acd, #00bcd4, #ff6ec4); background-size:200% 200%; animation:gradientMove 5s infinite alternate; color:white; border:none; border-radius:50%; width:55px; height:55px; font-size:22px; cursor:pointer; box-shadow:0 4px 15px rgba(0,0,0,0.4); z-index:100000;}
 
-  .user-message {
-    background: linear-gradient(45deg, #007bff, #00d4ff);
-    color: #fff;
-    margin-left: auto;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  }
-
-  .bot-message {
-    background: rgba(255,255,255,0.1);
-    color: #eee;
-    margin-right: auto;
-    border: 1px solid rgba(255,255,255,0.15);
-  }
-
-  /* 🔹 Input Area */
-  #chat-input-area {
-    display: flex;
-    border-top: 1px solid rgba(255,255,255,0.2);
-    background: rgba(20,20,30,0.7);
-  }
-
-  #chat-input {
-    flex: 1;
-    border: none;
-    padding: 12px;
-    font-size: 14px;
-    outline: none;
-    background: transparent;
-    color: white;
-  }
-
-  #send-btn {
-    background: #6a5acd;
-    color: #fff;
-    border: none;
-    padding: 12px 15px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  #send-btn:hover {
-    background: #00bcd4;
-  }
-
-  /* 🔹 Floating Button */
-  #chat-open {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: linear-gradient(45deg, #6a5acd, #00bcd4, #ff6ec4);
-    background-size: 200% 200%;
-    animation: gradientMove 5s infinite alternate;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 55px;
-    height: 55px;
-    font-size: 22px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-    z-index: 10000;
-  }
-
-  /* 🔹 Animations */
-  @keyframes fadeIn {
-    from {opacity: 0; transform: translateY(5px);}
-    to {opacity: 1; transform: translateY(0);}
-  }
-  @keyframes gradientMove {
-    0% {background-position: left;}
-    100% {background-position: right;}
-  }
+  @keyframes fadeIn { from{opacity:0; transform:translateY(5px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes gradientMove { 0%{background-position:left;} 100%{background-position:right;} }
 </style>
 
 <script>
-  const chatBox = document.getElementById("chat-box");
-  const chatInput = document.getElementById("chat-input");
-  const sendBtn = document.getElementById("send-btn");
-  const chatWindow = document.getElementById("chatbot");
-  const chatOpen = document.getElementById("chat-open");
-  const chatClose = document.getElementById("chat-close");
+  document.addEventListener("DOMContentLoaded", () => {
+    const chatBox = document.getElementById("chat-box");
+    const chatInput = document.getElementById("chat-input");
+    const sendBtn = document.getElementById("send-btn");
+    const chatWindow = document.getElementById("chatbot");
+    const chatOpen = document.getElementById("chat-open");
+    const chatClose = document.getElementById("chat-close");
 
-  // Open/Close
-  chatOpen.onclick = () => { chatWindow.style.display = "flex"; chatOpen.style.display = "none"; };
-  chatClose.onclick = () => { chatWindow.style.display = "none"; chatOpen.style.display = "block"; };
+    // Open/Close
+    chatOpen.onclick = () => { chatWindow.style.display="flex"; chatOpen.style.display="none"; };
+    chatClose.onclick = () => { chatWindow.style.display="none"; chatOpen.style.display="block"; };
 
-  // Append message
-  function appendMessage(message, sender) {
-    const msgDiv = document.createElement("div");
-    msgDiv.classList.add("message", sender === "user" ? "user-message" : "bot-message");
-    msgDiv.textContent = message;
-    chatBox.appendChild(msgDiv);
-    chatBox.scrollTop = chatBox.scrollHeight;
-  }
-
-  // 🔹 Extended Rule-based Replies
-  function botReply(userMsg) {
-    let reply = "";
-
-    if(userMsg.includes("hello") || userMsg.includes("hi") || userMsg.includes("namaste")){
-      reply = "नमस्ते 🙏 Shyam AI में आपका स्वागत है! मैं आपके सवालों के जवाब देने के लिए हूँ।";
-    }
-    else if(userMsg.includes("skills") || userMsg.includes("tools") || userMsg.includes("कौशल")){
-      reply = "मेरे skills: Figma 🎨, Photoshop 🖌️, Canva ✨, Adobe Express 🚀";
-    }
-    else if(userMsg.includes("project") || userMsg.includes("प्रोजेक्ट")){
-      reply = "📂 Projects: मैंने कई creative web & UI designs पर काम किया है। आप portfolio section देख सकते हैं।";
-    }
-    else if(userMsg.includes("portfolio") || userMsg.includes("काम")){
-      reply = "🚀 Portfolio: Modern और Creative UI/UX work का collection, ज़रूर checkout करें!";
-    }
-    else if(userMsg.includes("contact") || userMsg.includes("email") || userMsg.includes("संपर्क")){
-      reply = "📧 Contact: shyamgawatiya@gmail.com | LinkedIn पर 🔗";
-    }
-    else if(userMsg.includes("hire") || userMsg.includes("फ्रीलांस")){
-      reply = "✅ आप मुझे freelance projects के लिए hire कर सकते हैं — LinkedIn/Email से connect करें।";
-    }
-    else if(userMsg.includes("hobbies") || userMsg.includes("शौक")){
-      reply = "🎶 मुझे designing, technology सीखना, और नई चीज़ों explore करना पसंद है!";
-    }
-    else if(userMsg.includes("services") || userMsg.includes("सेवाएं")){
-      reply = "🛠️ मेरी सेवाएं: UI/UX Design, Portfolio Website Design, Graphic Design, Branding.";
-    }
-    else if(userMsg.includes("achievements") || userMsg.includes("उपलब्धि")){
-      reply = "🏆 Achievements: Multiple creative projects complete किए, clients से positive feedback मिला।";
-    }
-    else if(userMsg.includes("bye") || userMsg.includes("goodbye") || userMsg.includes("अलविदा")){
-      reply = "Goodbye! 🌟 आपका दिन शुभ हो।";
-    }
-    else {
-      reply = "😅 माफ़ कीजिए, यह सवाल मेरे database में नहीं है। आप मुझसे skills, projects, portfolio, services, hobbies या contact पूछ सकते हैं।";
+    function appendMessage(msg, sender){
+      const div = document.createElement("div");
+      div.classList.add("message", sender==="user"?"user-message":"bot-message");
+      div.textContent = msg;
+      chatBox.appendChild(div);
+      chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    appendMessage(reply, "bot");
-  }
+    function botReply(userMsg){
+      let reply="";
+      const msg = userMsg.toLowerCase();
 
-  // Send msg
-  sendBtn.addEventListener("click", () => {
-    const userMsg = chatInput.value.trim();
-    if(userMsg === "") return;
-    appendMessage(userMsg, "user");
-    chatInput.value = "";
-    botReply(userMsg.toLowerCase());
-  });
+      if(msg.includes("hello")||msg.includes("hi")||msg.includes("namaste")) reply="नमस्ते 🙏 Shyam AI में आपका स्वागत है!";
+      else if(msg.includes("skills")||msg.includes("tools")||msg.includes("कौशल")) reply="मेरे skills: Figma, Photoshop, Canva, Adobe Express";
+      else if(msg.includes("project")||msg.includes("प्रोजेक्ट")) reply="📂 Projects: Creative web & UI designs.";
+      else if(msg.includes("portfolio")||msg.includes("काम")) reply="🚀 Portfolio: Modern और Creative UI/UX work.";
+      else if(msg.includes("contact")||msg.includes("email")||msg.includes("संपर्क")) reply="📧 Contact: shyamgawatiya@gmail.com | LinkedIn";
+      else if(msg.includes("hire")||msg.includes("फ्रीलांस")) reply="✅ Freelance projects के लिए contact करें।";
+      else if(msg.includes("hobbies")||msg.includes("शौक")) reply="🎶 Designing, technology सीखना, नई चीज़ें explore करना पसंद है!";
+      else if(msg.includes("services")||msg.includes("सेवाएं")) reply="🛠️ Services: UI/UX Design, Portfolio Website, Graphic Design, Branding.";
+      else if(msg.includes("achievements")||msg.includes("उपलब्धि")) reply="🏆 Achievements: Multiple projects complete, positive feedback.";
+      else if(msg.includes("bye")||msg.includes("goodbye")||msg.includes("अलविदा")) reply="Goodbye! 🌟 आपका दिन शुभ हो।";
+      else reply="😅 Sorry, मैं यह जवाब नहीं जानता। आप skills, projects, portfolio, services, hobbies या contact पूछ सकते हैं।";
 
-  chatInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") sendBtn.click();
+      appendMessage(reply,"bot");
+    }
+
+    sendBtn.addEventListener("click", ()=>{
+      const msg=chatInput.value.trim();
+      if(!msg) return;
+      appendMessage(msg,"user");
+      chatInput.value="";
+      botReply(msg);
+    });
+
+    chatInput.addEventListener("keypress",(e)=>{
+      if(e.key==="Enter") sendBtn.click();
+    });
   });
 </script>
+
 
 
   <!-- ===== Header / Nav ===== -->
@@ -1209,6 +1103,7 @@ document.querySelectorAll('.toggle-btn').forEach(button => {
   </script>
 </body>
 </html>
+
 
 
 
