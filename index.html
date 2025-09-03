@@ -591,27 +591,40 @@
 
 
   <!-- ===== Header / Nav ===== -->
-  <header>
-    <div class="container nav" aria-label="Primary">
-      <!-- Logo Add -->
-<div class="brand">
-<img src="logo.png" alt="My Logo">
-  <h1>Design Art</h1>
-</div>
+ <!-- ===== Header / Nav ===== -->
+<header>
+  <div class="container nav" aria-label="Primary">
 
-      <nav>
-        <button class="nav-toggle" aria-expanded="false" aria-controls="menu">☰</button>
-        <div id="menu" class="menu">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#work">Work</a>
-          <a href="#blog">Blog</a>
-          <a href="#contact">Contact</a>
-          <a class="hire-btn" href="#contact">Hire Me</a>
-        </div>
-      </nav>
+    <!-- Logo Add -->
+    <div class="brand">
+      <img src="logo.png" alt="My Logo" class="logo">
+      <h1>Design Art</h1>
     </div>
-  </header>
+
+    <nav>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="menu">☰</button>
+      <div id="menu" class="menu">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+/* ==== Navbar Logo CSS ==== */
+.logo {
+  width: 60px;        /* Logo ka size control */
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+</style>
+
 
   <!-- ===== Hero ===== -->
   <main id="home" class="container">
@@ -1255,4 +1268,5 @@ document.querySelectorAll('.toggle-btn').forEach(button => {
   </script>
 </body>
 </html>
+
 
