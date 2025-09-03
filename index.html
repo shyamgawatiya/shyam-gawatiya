@@ -32,6 +32,25 @@
       padding-top: 100px; /* अपने navbar की exact height डालो (जैसे 80px, 90px, 100px) */
     }
   </style>
+    <style>
+/* 🔹 Logo Glow Effect */
+header .brand img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  padding: 5px;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+  box-shadow: 0 0 15px rgba(255,255,255,0.5);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover par aur glow */
+header .brand img:hover {
+  box-shadow: 0 0 30px rgba(255,255,255,0.8);
+  transform: scale(1.05);
+}
+</style>
+
 </head>
 
   <link rel="icon" href="image/logo.png" type="image/png">
@@ -307,72 +326,7 @@
     }
   }
 
-  // जब भी page load हो, preloader हटे
-  window.addEventListener("load", () => {
-    typeWriter();
-
-    // 3 second बाद preloader hide कर दो
-    setTimeout(() => {
-      document.getElementById("preloader").classList.add("hidden");
-    }, 3000);
-  });
-</script>
-
-<!-- ===== Preloader Start ===== -->
-<div id="preloader">
-  <div class="loader-logo">
-    <img src="image/logo.png" alt="Logo" />
-  </div>
-</div>
-
-<style>
-  /* Preloader Background */
-  #preloader {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: radial-gradient(circle at center, #0f0f1a, #000);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 99999;
-    overflow: hidden;
-    transition: opacity 1s ease, visibility 1s ease;
-  }
-
-  /* Hidden State */
-  #preloader.hidden {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  /* Logo Animation */
-  .loader-logo img {
-    width: 120px;
-    height: auto;
-    animation: logoZoom 3s ease forwards;
-  }
-
-  /* Keyframes */
-  @keyframes logoZoom {
-    0%   { transform: scale(0.5); opacity: 0; filter: blur(8px); }
-    40%  { transform: scale(1.1); opacity: 1; filter: blur(0); }
-    70%  { transform: scale(1);   opacity: 1; }
-    100% { transform: scale(0.6) translateY(-100px); opacity: 0; }
-  }
-</style>
-
-<script>
-  window.addEventListener("load", () => {
-    // 3.2 sec बाद preloader हटेगा
-    setTimeout(() => {
-      document.getElementById("preloader").classList.add("hidden");
-    }, 3200);
-  });
-</script>
-<!-- ===== Preloader End ===== -->
- 
-<body>
+ <body>
     <!-- ===== Chatbot UI ===== -->
 <div id="chatbot">
   <div id="chat-header">
@@ -1267,3 +1221,4 @@ document.querySelectorAll('.toggle-btn').forEach(button => {
   </script>
 </body>
 </html>
+
