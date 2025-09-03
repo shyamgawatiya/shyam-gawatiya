@@ -307,70 +307,7 @@
     }
   }
 
-  // जब भी page load हो, preloader हटे
-  window.addEventListener("load", () => {
-    typeWriter();
-
-    // 3 second बाद preloader hide कर दो
-    setTimeout(() => {
-      document.getElementById("preloader").classList.add("hidden");
-    }, 3000);
-  });
-</script>
-
-<!-- ===== Preloader Start ===== -->
-<div id="preloader">
-  <div class="loader-logo">
-    <img src="image/logo.png" alt="Logo" />
-  </div>
-</div>
-
-<style>
-  /* Preloader Background */
-  #preloader {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: radial-gradient(circle at center, #0f0f1a, #000);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 99999;
-    overflow: hidden;
-    transition: opacity 1s ease, visibility 1s ease;
-  }
-
-  /* Hidden State */
-  #preloader.hidden {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  /* Logo Animation */
-  .loader-logo img {
-    width: 120px;
-    height: auto;
-    animation: logoZoom 3s ease forwards;
-  }
-
-  /* Keyframes */
-  @keyframes logoZoom {
-    0%   { transform: scale(0.5); opacity: 0; filter: blur(8px); }
-    40%  { transform: scale(1.1); opacity: 1; filter: blur(0); }
-    70%  { transform: scale(1);   opacity: 1; }
-    100% { transform: scale(0.6) translateY(-100px); opacity: 0; }
-  }
-</style>
-
-<script>
-  window.addEventListener("load", () => {
-    // 3.2 sec बाद preloader हटेगा
-    setTimeout(() => {
-      document.getElementById("preloader").classList.add("hidden");
-    }, 3200);
-  });
-</script>
-<!-- ===== Preloader End ===== -->
+ 
  
 <body>
     <!-- ===== Chatbot UI ===== -->
@@ -630,12 +567,13 @@
     <section class="hero">
       <div>
         <div class="kicker">UI/UX Designer</div>
-        <h2 class="title">"I"m Shyam, a UI/UX Designer</h2>
-        <p class="subtitle">“With Figma, user research, and well-structured design systems, I create intuitive products that people love interacting with.”</p>
+        <h2 class="title">I m Shyam, a UI/UX Designer</h2>
+        <p class="subtitle">With Figma, user research, and well-structured design systems, I create intuitive products that people love interacting with.</p>
         <div class="cta-row">
           <a class="btn primary" href="#work">View Projects</a>
           <a class="btn" href="#contact">Get in Touch</a>
           <a class="btn" href="https://www.figma.com/" target="_blank" rel="noopener">Figma Files ↗</a>
+           <a class="btn" href="https://www.canva.com/?continue_in_browser=true" target="_blank" rel="noopener">Creative Poster ↗</a>
         </div>
         <div class="stats">
           <div class="stat"><b>10+</b><div class="muted">UI Screens</div></div>
@@ -645,7 +583,7 @@
       </div>
       <div class="hero-card" aria-label="Featured snapshot">
         <img alt="Preview mockup" src="https://images.unsplash.com/photo-1542744094-3a31f272c490?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-        <p class="muted" style="margin-top:10px">Showcasing my latest UI/UX design work</p>
+        <p class="muted" style="margin-top:10px">Showcasing My Latest UI & UX design Work</p>
       </div>
     </section>
   </main>
@@ -659,7 +597,7 @@
     <div class="about">
       <div class="about-card">
         <h3>Short Bio</h3>
-        <p>“I"m an entry-level UI/UX Designer passionate about crafting simple flows, impactful typography, and meaningful micro-interactions across app and web interfaces. Skilled in Figma, Canva, Adobe Express, and Photoshop.”</p>
+        <p>I m an entry-level UI/UX Designer passionate about crafting simple flows, impactful typography, and meaningful micro-interactions across app and web interfaces. Skilled in Figma, Canva, Adobe Express, and Photoshop.”</p>
         <div class="chips" aria-label="Skills">
           <span class="chip">Figma</span>
           <span class="chip">Wireframing</span>
@@ -883,7 +821,7 @@
       <div class="thumb"><img alt="Wireframes" src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=1600&auto=format&fit=crop"></div>
       <div class="card-body">
         <h3>My 6‑step case study template</h3>
-        <p class="muted collapsed">Problem framing से लेकर outcomes तक — एक simple framework. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a semper sapien. Nulla facilisi.</p>
+        <p class="muted collapsed">From problem framing to outcomes — a simple framework. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Don't be like a semper. Zero facility.</p>
       </div>
       <div class="card-footer"><a class="btn toggle-btn" href="javascript:void(0)">Read </a></div>
     </article>
@@ -901,7 +839,7 @@
       <div class="thumb"><img alt="Prototyping" src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1600&auto=format&fit=crop"></div>
       <div class="card-body">
         <h3>Prototyping fast in Figma</h3>
-        <p class="muted collapsed">Instant interactions, variants और reusable flows. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a semper sapien.</p>
+        <p class="muted collapsed">Instant interactions, variants and reusable flows. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Don't be like a semper.</p>
       </div>
       <div class="card-footer"><a class="btn toggle-btn" href="javascript:void(0)">Read </a></div>
     </article>
@@ -1115,7 +1053,7 @@ document.querySelectorAll('.toggle-btn').forEach(button => {
 
     <!-- Text -->
     <p class="footer-text">
-      © <span id="year"></span> Shyam Gawatiya — Built with ♥ Using ChatGPT-5 • Deepseek • Grock AI
+      © <span id="year"></span> Shyam Gawatiya — Built with ♥ Using ChatGPT-5 • Deepseek • Grock AI • Grock AI
     </p>
   </div>
 
@@ -1267,3 +1205,4 @@ document.querySelectorAll('.toggle-btn').forEach(button => {
   </script>
 </body>
 </html>
+
